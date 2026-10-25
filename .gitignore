@@ -1,0 +1,13 @@
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+*.iml
+.idea/
+# Platform folders are generated in CI via `flutter create` (see workflow).
+# Remove these 3 lines once you commit android/windows/linux folders.
+/android/
+/windows/
+/linux/
