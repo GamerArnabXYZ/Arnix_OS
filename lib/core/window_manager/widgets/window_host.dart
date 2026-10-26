@@ -12,7 +12,9 @@ import 'window_frame.dart';
 /// Desktop: floating windows in z-order. App content state survives
 /// minimize and layout switches (GlobalKey per window).
 class WindowHost extends ConsumerStatefulWidget {
-  const WindowHost({super.key});
+  const WindowHost({super.key, required this.layout});
+
+  final ShellLayout layout;
 
   @override
   ConsumerState<WindowHost> createState() => _WindowHostState();
@@ -25,7 +27,6 @@ class _WindowHostState extends ConsumerState<WindowHost> {
   Widget build(BuildContext context) {
     final registry = ref.watch(appRegistryProvider);
     final st = ref.watch(windowsProvider);
-    final force = ref.watch(forceDesktopProvider);
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -39,7 +40,7 @@ class _WindowHostState extends ConsumerState<WindowHost> {
           });
         }
 
-        final layout = layoutFor(size.width, forceDesktop: force);
+        final layout = widget.layout;
         final topVisible = st.topVisibleId;
 
         return Stack(

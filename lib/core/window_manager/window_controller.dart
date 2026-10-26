@@ -164,6 +164,19 @@ class WindowsNotifier extends Notifier<WindowsState> {
     ]);
   }
 
+  void minimizeAll() {
+    if (state.windows.isEmpty) return;
+    _setList([
+      for (final w in state.windows) w.isMinimized ? w : w.copyWith(isMinimized: true),
+    ]);
+  }
+
+  void closeAllOf(String appId) {
+    final list = state.windows.where((w) => w.appId != appId).toList();
+    if (list.length == state.windows.length) return;
+    _setList(list);
+  }
+
   /// Taskbar/dock tap: restore if minimized, minimize if focused, else focus.
   void toggleFromDock(int id) {
     final w = state.byId(id);

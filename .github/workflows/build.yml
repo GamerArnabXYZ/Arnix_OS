@@ -46,6 +46,7 @@ jobs:
         run: |
           $FLUTTER_CREATE
           rm -f test/widget_test.dart
+          bash tools/patch_android.sh
       - run: flutter pub get
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4

@@ -171,4 +171,21 @@ void main() {
     n.setDesktopSize(const Size(800, 500));
     expect(st().byId(a)!.rect, Offset.zero & const Size(800, 500));
   });
+
+  test('minimizeAll hides everything and clears focus', () {
+    n.open('a');
+    n.open('a');
+    n.minimizeAll();
+    expect(st().windows.every((w) => w.isMinimized), isTrue);
+    expect(st().focusedId, isNull);
+  });
+
+  test('closeAllOf closes only that app', () {
+    n.open('a');
+    n.open('a');
+    final solo = n.open('solo')!;
+    n.closeAllOf('a');
+    expect(st().windows.map((w) => w.id), [solo]);
+    expect(st().focusedId, solo);
+  });
 }

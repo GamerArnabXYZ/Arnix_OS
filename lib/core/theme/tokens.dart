@@ -6,7 +6,7 @@ abstract final class Tokens {
   static const double minTouch = 48;
   static const double titleBarHeight = 48;
   static const double phoneHeaderHeight = 56;
-  static const double dockHeight = 64;
+  static const double taskbarThickness = 64;
   static const double windowRadius = 10;
   static const double phoneBreakpoint = 600;
 
